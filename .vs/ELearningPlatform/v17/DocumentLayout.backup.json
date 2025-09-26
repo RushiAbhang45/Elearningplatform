@@ -7,12 +7,28 @@
       "RelativeMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|d:\\elearningplatform\\controllers\\teachercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|solutionrelative:controllers\\teachercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|d:\\elearningplatform\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|d:\\elearningplatform\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|d:\\elearningplatform\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|solutionrelative:data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|d:\\elearningplatform\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|d:\\elearningplatform\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|d:\\elearningplatform\\controllers\\teachercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|solutionrelative:controllers\\teachercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|d:\\elearningplatform\\views\\teacher\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -65,10 +81,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|d:\\elearningplatform\\migrations\\20250924052510_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|solutionrelative:migrations\\20250924052510_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|d:\\elearningplatform\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|solutionrelative:data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|d:\\elearningplatform\\views\\admin\\classes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -163,10 +175,6 @@
       "RelativeMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|solutionrelative:models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|d:\\elearningplatform\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|d:\\elearningplatform\\viewmodels\\quizviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E5DB1846-5095-47B9-9547-3790A7AB5DB2}|ELearningPlatform.csproj|solutionrelative:viewmodels\\quizviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -194,28 +202,94 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\ELearningPlatform\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAH0AAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAcwKMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-23T12:23:57.079Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:7:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+              "Name": "ST:14:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\ELearningPlatform\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\ELearningPlatform\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-23T06:33:44.827Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SeedData.cs",
+              "DocumentMoniker": "D:\\ELearningPlatform\\Data\\SeedData.cs",
+              "RelativeDocumentMoniker": "Data\\SeedData.cs",
+              "ToolTip": "D:\\ELearningPlatform\\Data\\SeedData.cs",
+              "RelativeToolTip": "Data\\SeedData.cs",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAcwKUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-23T07:00:58.524Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\ELearningPlatform\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\ELearningPlatform\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAcwIkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-23T07:00:28.245Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "D:\\ELearningPlatform\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "appsettings.Development.json",
+              "ToolTip": "D:\\ELearningPlatform\\appsettings.Development.json",
+              "RelativeToolTip": "appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-26T10:30:07.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "D:\\ELearningPlatform\\Dockerfile",
+              "RelativeDocumentMoniker": "Dockerfile",
+              "ToolTip": "D:\\ELearningPlatform\\Dockerfile",
+              "RelativeToolTip": "Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-09-26T10:08:24.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\Parent\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Parent\\Index.cshtml",
@@ -227,7 +301,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\Teacher\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Teacher\\Index.cshtml",
@@ -238,21 +312,12 @@
               "WhenOpened": "2025-09-24T09:14:17.71Z"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\ELearningPlatform\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "D:\\ELearningPlatform\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-23T06:33:44.827Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:7:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "TeacherController.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Controllers\\TeacherController.cs",
               "RelativeDocumentMoniker": "Controllers\\TeacherController.cs",
@@ -260,12 +325,11 @@
               "RelativeToolTip": "Controllers\\TeacherController.cs",
               "ViewState": "AgIAAEUBAAAAAAAAAAAAACsBAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T12:22:39.567Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-23T12:22:39.567Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "ParentController.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Controllers\\ParentController.cs",
               "RelativeDocumentMoniker": "Controllers\\ParentController.cs",
@@ -277,7 +341,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "Take.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\Quiz\\Take.cshtml",
               "RelativeDocumentMoniker": "Views\\Quiz\\Take.cshtml",
@@ -289,7 +353,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
@@ -301,7 +365,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
@@ -313,7 +377,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "Views\\_ViewImports.cshtml",
@@ -325,7 +389,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\Student\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Student\\Index.cshtml",
@@ -337,7 +401,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "Subjects.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\Student\\Subjects.cshtml",
               "RelativeDocumentMoniker": "Views\\Student\\Subjects.cshtml",
@@ -349,7 +413,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
@@ -361,7 +425,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "Views\\_ViewStart.cshtml",
@@ -373,7 +437,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "Content.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\Student\\Content.cshtml",
               "RelativeDocumentMoniker": "Views\\Student\\Content.cshtml",
@@ -385,7 +449,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\Admin\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Admin\\Index.cshtml",
@@ -397,7 +461,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "20250924052510_InitialCreate.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Migrations\\20250924052510_InitialCreate.cs",
               "RelativeDocumentMoniker": "Migrations\\20250924052510_InitialCreate.cs",
@@ -409,7 +473,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "Classes.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\Admin\\Classes.cshtml",
               "RelativeDocumentMoniker": "Views\\Admin\\Classes.cshtml",
@@ -421,19 +485,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "SeedData.cs",
-              "DocumentMoniker": "D:\\ELearningPlatform\\Data\\SeedData.cs",
-              "RelativeDocumentMoniker": "Data\\SeedData.cs",
-              "ToolTip": "D:\\ELearningPlatform\\Data\\SeedData.cs",
-              "RelativeToolTip": "Data\\SeedData.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAowDoAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T07:00:58.524Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "Chapters.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\Student\\Chapters.cshtml",
               "RelativeDocumentMoniker": "Views\\Student\\Chapters.cshtml",
@@ -445,7 +497,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "Register.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "Views\\Account\\Register.cshtml",
@@ -457,7 +509,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 26,
               "Title": "Login.cshtml",
               "DocumentMoniker": "D:\\ELearningPlatform\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "Views\\Account\\Login.cshtml",
@@ -469,7 +521,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 23,
               "Title": "AdminController.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
@@ -481,7 +533,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 24,
               "Title": "StudentController.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Controllers\\StudentController.cs",
               "RelativeDocumentMoniker": "Controllers\\StudentController.cs",
@@ -493,7 +545,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 27,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
@@ -505,7 +557,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 28,
               "Title": "StudentProgress.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Models\\StudentProgress.cs",
               "RelativeDocumentMoniker": "Models\\StudentProgress.cs",
@@ -517,7 +569,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 32,
               "Title": "ProgressService.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Services\\ProgressService.cs",
               "RelativeDocumentMoniker": "Services\\ProgressService.cs",
@@ -529,7 +581,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "IProgressService.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Services\\IProgressService.cs",
               "RelativeDocumentMoniker": "Services\\IProgressService.cs",
@@ -541,7 +593,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 30,
               "Title": "IContentService.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Services\\IContentService.cs",
               "RelativeDocumentMoniker": "Services\\IContentService.cs",
@@ -553,7 +605,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 29,
               "Title": "ContentService.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Services\\ContentService.cs",
               "RelativeDocumentMoniker": "Services\\ContentService.cs",
@@ -565,7 +617,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 33,
               "Title": "Subject.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Models\\Subject.cs",
               "RelativeDocumentMoniker": "Models\\Subject.cs",
@@ -577,7 +629,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 34,
               "Title": "StudentClass.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Models\\StudentClass.cs",
               "RelativeDocumentMoniker": "Models\\StudentClass.cs",
@@ -589,7 +641,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 35,
               "Title": "QuizQuestion.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Models\\QuizQuestion.cs",
               "RelativeDocumentMoniker": "Models\\QuizQuestion.cs",
@@ -601,7 +653,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 36,
               "Title": "Quiz.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Models\\Quiz.cs",
               "RelativeDocumentMoniker": "Models\\Quiz.cs",
@@ -613,7 +665,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 37,
               "Title": "ParentChild.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Models\\ParentChild.cs",
               "RelativeDocumentMoniker": "Models\\ParentChild.cs",
@@ -625,7 +677,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 38,
               "Title": "Notice.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Models\\Notice.cs",
               "RelativeDocumentMoniker": "Models\\Notice.cs",
@@ -637,7 +689,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 39,
               "Title": "ErrorViewModel.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Models\\ErrorViewModel.cs",
               "RelativeDocumentMoniker": "Models\\ErrorViewModel.cs",
@@ -649,7 +701,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 42,
               "Title": "ApplicationUser.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Models\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "Models\\ApplicationUser.cs",
@@ -661,7 +713,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 41,
               "Title": "Chapter.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Models\\Chapter.cs",
               "RelativeDocumentMoniker": "Models\\Chapter.cs",
@@ -673,7 +725,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 40,
               "Title": "Class.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Models\\Class.cs",
               "RelativeDocumentMoniker": "Models\\Class.cs",
@@ -685,19 +737,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "D:\\ELearningPlatform\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
-              "ToolTip": "D:\\ELearningPlatform\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAH8AAAAAAAAAAAAUwIgAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T07:00:28.245Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 43,
               "Title": "QuizViewModels.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\ViewModels\\QuizViewModels.cs",
               "RelativeDocumentMoniker": "ViewModels\\QuizViewModels.cs",
@@ -709,7 +749,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 44,
               "Title": "RegisterViewModel.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\ViewModels\\RegisterViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\RegisterViewModel.cs",
@@ -721,7 +761,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 45,
               "Title": "LoginViewModel.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\ViewModels\\LoginViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\LoginViewModel.cs",
@@ -733,7 +773,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 46,
               "Title": "QuizAttempt.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Models\\QuizAttempt.cs",
               "RelativeDocumentMoniker": "Models\\QuizAttempt.cs",
@@ -745,7 +785,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 47,
               "Title": "Content.cs",
               "DocumentMoniker": "D:\\ELearningPlatform\\Models\\Content.cs",
               "RelativeDocumentMoniker": "Models\\Content.cs",

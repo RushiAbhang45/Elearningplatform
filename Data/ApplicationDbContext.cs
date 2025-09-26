@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ELearningPlatform.Models;
 
@@ -24,7 +25,58 @@ namespace ELearningPlatform.Data
         {
             base.OnModelCreating(builder);
 
-            // Configure relationships
+            // ----------- SQLite adjustments for Identity -----------
+            if (Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
+            {
+                // IdentityRole
+                builder.Entity<IdentityRole>(b =>
+                {
+                    b.Property(r => r.Name).HasColumnType("TEXT");
+                    b.Property(r => r.NormalizedName).HasColumnType("TEXT");
+                    b.Property(r => r.ConcurrencyStamp).HasColumnType("TEXT");
+                });
+
+                // IdentityUser
+                builder.Entity<ApplicationUser>(b =>
+                {
+                    b.Property(u => u.UserName).HasColumnType("TEXT");
+                    b.Property(u => u.NormalizedUserName).HasColumnType("TEXT");
+                    b.Property(u => u.Email).HasColumnType("TEXT");
+                    b.Property(u => u.NormalizedEmail).HasColumnType("TEXT");
+                    b.Property(u => u.PasswordHash).HasColumnType("TEXT");
+                    b.Property(u => u.SecurityStamp).HasColumnType("TEXT");
+                    b.Property(u => u.ConcurrencyStamp).HasColumnType("TEXT");
+                    b.Property(u => u.PhoneNumber).HasColumnType("TEXT");
+                });
+
+                // Other Identity tables
+                builder.Entity<IdentityUserLogin<string>>(b =>
+                {
+                    b.Property(l => l.ProviderKey).HasColumnType("TEXT");
+                    b.Property(l => l.LoginProvider).HasColumnType("TEXT");
+                });
+
+                builder.Entity<IdentityUserToken<string>>(b =>
+                {
+                    b.Property(t => t.Value).HasColumnType("TEXT");
+                    b.Property(t => t.LoginProvider).HasColumnType("TEXT");
+                    b.Property(t => t.Name).HasColumnType("TEXT");
+                });
+
+                builder.Entity<IdentityUserClaim<string>>(b =>
+                {
+                    b.Property(c => c.ClaimType).HasColumnType("TEXT");
+                    b.Property(c => c.ClaimValue).HasColumnType("TEXT");
+                });
+
+                builder.Entity<IdentityRoleClaim<string>>(b =>
+                {
+                    b.Property(c => c.ClaimType).HasColumnType("TEXT");
+                    b.Property(c => c.ClaimValue).HasColumnType("TEXT");
+                });
+            }
+
+            // ----------- Your existing model relationships -----------
             builder.Entity<Subject>()
                 .HasOne(s => s.Class)
                 .WithMany(c => c.Subjects)
@@ -121,7 +173,6 @@ namespace ELearningPlatform.Data
                 .HasForeignKey(pc => pc.ChildId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Indexes for better performance
             builder.Entity<StudentProgress>()
                 .HasIndex(sp => new { sp.StudentId, sp.ChapterId })
                 .IsUnique();
