@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.3.2",
+    "terser": "^5.43.1"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/output.css --minify"
+  },
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "@tailwindcss/typography": "^0.5.16",
+    "caniuse-lite": "^1.0.30001727"
+  }
+
+}

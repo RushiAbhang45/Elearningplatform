@@ -1,0 +1,308 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-red-600 to-pink-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex items-center justify-between">
+                <div class="fade-in">
+                    <h1 class="text-4xl font-bold mb-2">Admin Dashboard</h1>
+                    <p class="text-red-100 text-lg">Manage your e-learning platform with powerful tools</p>
+                </div>
+                <div class="text-8xl opacity-20">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500 hover-lift fade-in">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-user-graduate text-4xl text-blue-500"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Total Students</p>
+                        <p class="text-3xl font-bold text-gray-900">@ViewBag.Stats.TotalStudents</p>
+                        <p class="text-sm text-green-600 flex items-center mt-1">
+                            <i class="fas fa-arrow-up mr-1"></i>
+                            12% this month
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500 hover-lift fade-in" style="animation-delay: 0.1s;">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-chalkboard-teacher text-4xl text-green-500"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Total Teachers</p>
+                        <p class="text-3xl font-bold text-gray-900">@ViewBag.Stats.TotalTeachers</p>
+                        <p class="text-sm text-green-600 flex items-center mt-1">
+                            <i class="fas fa-arrow-up mr-1"></i>
+                            8% this month
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500 hover-lift fade-in" style="animation-delay: 0.2s;">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-school text-4xl text-purple-500"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Total Classes</p>
+                        <p class="text-3xl font-bold text-gray-900">@ViewBag.Stats.TotalClasses</p>
+                        <p class="text-sm text-blue-600 flex items-center mt-1">
+                            <i class="fas fa-plus mr-1"></i>
+                            @ViewBag.Stats.TotalSubjects subjects
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-500 hover-lift fade-in" style="animation-delay: 0.3s;">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-chart-bar text-4xl text-yellow-500"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Total Parents</p>
+                        <p class="text-3xl font-bold text-gray-900">@ViewBag.Stats.TotalParents</p>
+                        <p class="text-sm text-purple-600 flex items-center mt-1">
+                            <i class="fas fa-users mr-1"></i>
+                            Engaged families
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Quick Actions -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-lg p-6 fade-in">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-bolt text-yellow-500 mr-3"></i>Quick Actions
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <a asp-action="Classes"
+                           class="group bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300 border border-blue-200 hover:border-blue-300 hover-lift">
+                            <div class="flex items-center justify-between mb-4">
+                                <i class="fas fa-school text-blue-600 text-3xl group-hover:scale-110 transition-transform duration-200"></i>
+                                <i class="fas fa-arrow-right text-blue-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-200"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Manage Classes</h3>
+                            <p class="text-gray-600 text-sm">Create, edit, and organize classes and subjects</p>
+                            <div class="mt-3 text-sm text-blue-600 font-medium">
+                                @ViewBag.Stats.TotalClasses classes • @ViewBag.Stats.TotalSubjects subjects
+                            </div>
+                        </a>
+
+                        <a asp-action="Users"
+                           class="group bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300 border border-green-200 hover:border-green-300 hover-lift">
+                            <div class="flex items-center justify-between mb-4">
+                                <i class="fas fa-users text-green-600 text-3xl group-hover:scale-110 transition-transform duration-200"></i>
+                                <i class="fas fa-arrow-right text-green-400 group-hover:text-green-600 group-hover:translate-x-1 transition-all duration-200"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Manage Users</h3>
+                            <p class="text-gray-600 text-sm">View and manage all platform users</p>
+                            <div class="mt-3 text-sm text-green-600 font-medium">
+                                @(ViewBag.Stats.TotalStudents + ViewBag.Stats.TotalTeachers + ViewBag.Stats.TotalParents) total users
+                            </div>
+                        </a>
+
+                        <a asp-action="Enrollments"
+                           class="group bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300 border border-purple-200 hover:border-purple-300 hover-lift">
+                            <div class="flex items-center justify-between mb-4">
+                                <i class="fas fa-user-plus text-purple-600 text-3xl group-hover:scale-110 transition-transform duration-200"></i>
+                                <i class="fas fa-arrow-right text-purple-400 group-hover:text-purple-600 group-hover:translate-x-1 transition-all duration-200"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Student Enrollment</h3>
+                            <p class="text-gray-600 text-sm">Enroll students in classes and manage assignments</p>
+                            <div class="mt-3 text-sm text-purple-600 font-medium">
+                                Manage enrollments
+                            </div>
+                        </a>
+
+                        <a asp-action="Reports"
+                           class="group bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300 border border-orange-200 hover:border-orange-300 hover-lift">
+                            <div class="flex items-center justify-between mb-4">
+                                <i class="fas fa-chart-line text-orange-600 text-3xl group-hover:scale-110 transition-transform duration-200"></i>
+                                <i class="fas fa-arrow-right text-orange-400 group-hover:text-orange-600 group-hover:translate-x-1 transition-all duration-200"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Reports & Analytics</h3>
+                            <p class="text-gray-600 text-sm">View detailed platform analytics and reports</p>
+                            <div class="mt-3 text-sm text-orange-600 font-medium">
+                                @ViewBag.Stats.TotalQuizzes quizzes completed
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Recent Activity -->
+                <div class="bg-white rounded-xl shadow-lg p-6 fade-in">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-clock text-blue-500 mr-3"></i>Recent Activity
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                            <i class="fas fa-user-plus text-green-500 mr-3 text-lg"></i>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-gray-900">New student registered</p>
+                                <p class="text-xs text-gray-500">2 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-blue-50 rounded-lg">
+                            <i class="fas fa-book text-blue-500 mr-3 text-lg"></i>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-gray-900">5 new chapters added</p>
+                                <p class="text-xs text-gray-500">4 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-yellow-50 rounded-lg">
+                            <i class="fas fa-bell text-yellow-500 mr-3 text-lg"></i>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-gray-900">8 notices posted today</p>
+                                <p class="text-xs text-gray-500">6 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-purple-50 rounded-lg">
+                            <i class="fas fa-quiz text-purple-500 mr-3 text-lg"></i>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-gray-900">23 quizzes completed</p>
+                                <p class="text-xs text-gray-500">1 day ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Status -->
+                <div class="bg-white rounded-xl shadow-lg p-6 fade-in">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-server text-green-500 mr-3"></i>System Status
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Database</span>
+                            <span class="flex items-center text-green-600 text-sm font-medium">
+                                <i class="fas fa-circle text-xs mr-2"></i>Online
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">File Storage</span>
+                            <span class="flex items-center text-green-600 text-sm font-medium">
+                                <i class="fas fa-circle text-xs mr-2"></i>Online
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Email Service</span>
+                            <span class="flex items-center text-green-600 text-sm font-medium">
+                                <i class="fas fa-circle text-xs mr-2"></i>Online
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Backup Status</span>
+                            <span class="flex items-center text-green-600 text-sm font-medium">
+                                <i class="fas fa-circle text-xs mr-2"></i>Current
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
+                        <div class="flex items-center">
+                            <i class="fas fa-shield-alt text-green-500 mr-2"></i>
+                            <span class="text-sm font-medium text-green-800">All systems operational</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="bg-gradient-to-br from-indigo-50 to-purple-100 rounded-xl shadow-lg p-6 border border-indigo-200 fade-in">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-chart-pie text-indigo-500 mr-3"></i>Platform Overview
+                    </h2>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm text-gray-700">Active Users</span>
+                                <span class="text-sm font-semibold text-gray-900">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm text-gray-700">Course Completion</span>
+                                <span class="text-sm font-semibold text-gray-900">78%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full" style="width: 78%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm text-gray-700">Satisfaction Rate</span>
+                                <span class="text-sm font-semibold text-gray-900">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-gradient-to-r from-green-400 to-emerald-500 h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add fade-in animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            fadeObserver.observe(el);
+        });
+
+        // Animate progress bars
+        const progressBars = document.querySelectorAll('[style*="width:"]');
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 500);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        progressBars.forEach(bar => progressObserver.observe(bar));
+    </script>
+}

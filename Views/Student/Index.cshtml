@@ -1,0 +1,342 @@
+﻿@model IEnumerable<Class>
+@{
+    ViewData["Title"] = "Student Dashboard";
+    var recentQuizAttempts = ViewBag.RecentQuizAttempts as List<ELearningPlatform.Models.QuizAttempt> ?? new List<ELearningPlatform.Models.QuizAttempt>();
+    var recentNotices = ViewBag.RecentNotices as IEnumerable<dynamic> ?? new List<dynamic>();
+    var subjectProgresses = ViewBag.SubjectProgresses as Dictionary<int, double> ?? new Dictionary<int, double>();
+}
+
+<div class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex items-center justify-between">
+                <div class="fade-in">
+                    <h1 class="text-4xl font-bold mb-2">Welcome back, Student! 🎓</h1>
+                    <p class="text-blue-100 text-lg">Continue your learning journey and achieve your goals</p>
+                </div>
+                <div class="text-8xl opacity-20">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Progress Overview Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-xl shadow-lg p-6 hover-lift border-l-4 border-green-500 fade-in">
+                <div class="flex items-center">
+                    <i class="fas fa-chart-line text-3xl text-green-500 mr-4"></i>
+                    <div>
+                        <p class="text-sm text-gray-500 uppercase tracking-wider font-medium">Overall Progress</p>
+                        <p class="text-3xl font-bold text-gray-900">@((ViewBag.OverallProgress ?? 0).ToString("F1"))%</p>
+                    </div>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-3 mt-4">
+                    <div class="bg-green-500 h-3 rounded-full transition-all duration-1000 ease-out"
+                         style="width: @((ViewBag.OverallProgress ?? 0).ToString("F1"))%"></div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6 hover-lift border-l-4 border-yellow-500 fade-in" style="animation-delay: 0.1s;">
+                <div class="flex items-center">
+                    <i class="fas fa-trophy text-3xl text-yellow-500 mr-4"></i>
+                    <div>
+                        <p class="text-sm text-gray-500 uppercase tracking-wider font-medium">Quizzes Completed</p>
+                        <p class="text-3xl font-bold text-gray-900">@recentQuizAttempts.Count</p>
+                    </div>
+                </div>
+                <div class="mt-2 text-sm text-gray-600">
+                    <i class="fas fa-arrow-up text-green-500"></i> Great progress!
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6 hover-lift border-l-4 border-blue-500 fade-in" style="animation-delay: 0.2s;">
+                <div class="flex items-center">
+                    <i class="fas fa-clock text-3xl text-blue-500 mr-4"></i>
+                    <div>
+                        <p class="text-sm text-gray-500 uppercase tracking-wider font-medium">Study Streak</p>
+                        <p class="text-3xl font-bold text-gray-900">7 days</p>
+                    </div>
+                </div>
+                <div class="mt-2 text-sm text-gray-600">
+                    <i class="fas fa-fire text-orange-500"></i> Keep it up!
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6 hover-lift border-l-4 border-purple-500 fade-in" style="animation-delay: 0.3s;">
+                <div class="flex items-center">
+                    <i class="fas fa-star text-3xl text-purple-500 mr-4"></i>
+                    <div>
+                        <p class="text-sm text-gray-500 uppercase tracking-wider font-medium">Average Score</p>
+                        <p class="text-3xl font-bold text-gray-900">
+                            @if (recentQuizAttempts.Any())
+                            {
+                                var avgScore = recentQuizAttempts.Average(qa => (double)qa.Score / qa.TotalQuestions * 100);
+                                @avgScore.ToString("F1")
+                                <span class="text-lg">%</span>
+                            }
+                            else
+                            {
+                                <span>N/A</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-2 text-sm text-gray-600">
+                    <i class="fas fa-chart-bar text-blue-500"></i> Excellent work!
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- My Classes -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl shadow-lg p-6 fade-in">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-900 flex items-center">
+                            <i class="fas fa-school text-blue-500 mr-3"></i>My Classes
+                        </h2>
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                            @Model.Count() @(Model.Count() == 1 ? "Class" : "Classes")
+                        </span>
+                    </div>
+
+                    @if (Model.Any())
+                    {
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            @foreach (var classItem in Model)
+                            {
+                                <div class="group bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 hover:shadow-lg transition-all duration-300 cursor-pointer border border-blue-200 hover:border-blue-300 hover-lift">
+                                    <a asp-action="Subjects" asp-route-classId="@classItem.Id" class="block">
+                                        <div class="flex items-center justify-between mb-4">
+                                            <h3 class="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition duration-200">
+                                                @classItem.Name
+                                            </h3>
+                                            <i class="fas fa-arrow-right text-blue-500 group-hover:translate-x-1 transition-transform duration-200"></i>
+                                        </div>
+                                        <p class="text-gray-600 mb-4">@classItem.Description</p>
+
+                                        <div class="flex items-center justify-between text-sm">
+                                            <span class="flex items-center text-blue-600">
+                                                <i class="fas fa-book mr-2"></i>
+                                                @classItem.Subjects.Count @(classItem.Subjects.Count == 1 ? "subject" : "subjects")
+                                            </span>
+
+                                            @{
+                                                var classProgress = subjectProgresses
+                                                .Where(kvp => classItem.Subjects.Any(s => s.Id == kvp.Key))
+                                                .Select(kvp => kvp.Value)
+                                                .DefaultIfEmpty(0)
+                                                .Average();
+                                            }
+
+                                            <span class="flex items-center text-green-600 font-medium">
+                                                <i class="fas fa-chart-pie mr-2"></i>
+                                                @classProgress.ToString("F0")% complete
+                                            </span>
+                                        </div>
+
+                                        <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+                                            <div class="bg-gradient-to-r from-blue-500 to-green-500 h-2 rounded-full transition-all duration-1000 ease-out"
+                                                 style="width: @classProgress.ToString("F0")%"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-12">
+                            <i class="fas fa-school text-8xl text-gray-300 mb-6"></i>
+                            <h3 class="text-xl font-semibold text-gray-500 mb-2">No classes assigned yet</h3>
+                            <p class="text-gray-400 mb-6">Contact your administrator to get enrolled in classes</p>
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-md mx-auto">
+                                <div class="flex items-start">
+                                    <i class="fas fa-info-circle text-blue-500 mt-1 mr-3"></i>
+                                    <div class="text-left">
+                                        <h4 class="text-sm font-medium text-blue-800 mb-1">Getting Started</h4>
+                                        <p class="text-sm text-blue-600">Once enrolled, you'll be able to access course materials, take quizzes, and track your progress.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Recent Quiz Results -->
+                @if (recentQuizAttempts.Any())
+                {
+                    <div class="bg-white rounded-xl shadow-lg p-6 fade-in">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                            <i class="fas fa-history text-green-500 mr-3"></i>Recent Quiz Results
+                        </h2>
+                        <div class="space-y-3">
+                            @foreach (var attempt in recentQuizAttempts)
+                            {
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-200">
+                                    <div class="flex-1">
+                                        <h4 class="font-medium text-gray-900 truncate">@attempt.Quiz.Title</h4>
+                                        <p class="text-sm text-gray-500">@attempt.Quiz.Chapter.Subject.Name</p>
+                                        <p class="text-xs text-gray-400">@attempt.AttemptedAt.ToString("MMM dd, yyyy")</p>
+                                    </div>
+                                    <div class="text-right ml-4">
+                                        <div class="text-lg font-bold text-gray-900">@attempt.Score/@attempt.TotalQuestions</div>
+                                        <div class="text-sm font-medium @((double)attempt.Score / attempt.TotalQuestions * 100 >= 80 ? "text-green-600" : (double)attempt.Score / attempt.TotalQuestions * 100 >= 60 ? "text-yellow-600" : "text-red-600")">
+                                            @(((double)attempt.Score / attempt.TotalQuestions * 100).ToString("F0"))%
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <a asp-action="Quizzes" class="block text-center mt-4 text-blue-600 hover:text-blue-800 font-medium transition duration-200">
+                            View All Results <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                }
+
+                <!-- Recent Notices -->
+                @if (recentNotices.Any())
+                {
+                    <div class="bg-white rounded-xl shadow-lg p-6 fade-in">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                            <i class="fas fa-bell text-yellow-500 mr-3"></i>Recent Notices
+                        </h2>
+                        <div class="space-y-3">
+                            @foreach (var notice in recentNotices)
+                            {
+                                <div class="border-l-4 border-yellow-400 bg-yellow-50 p-4 rounded-r-lg">
+                                    <div class="flex items-start justify-between mb-2">
+                                        <h4 class="font-medium text-gray-900">@notice.Title</h4>
+                                        <span class="text-xs text-gray-500 whitespace-nowrap ml-2">
+                                            @notice.CreatedAt.ToString("MMM dd")
+                                        </span>
+                                    </div>
+                                    <p class="text-gray-700 text-sm mb-2">
+                                        @(notice.Content.Length > 100 ? notice.Content.Substring(0, 100) + "..." : notice.Content)
+                                    </p>
+                                    <div class="text-xs text-gray-500">
+                                        <i class="fas fa-user mr-1"></i>@notice.CreatedBy.FullName
+                                        @if (notice.Class != null)
+                                        {
+                                            <span class="ml-2">
+                                                <i class="fas fa-school mr-1"></i>@notice.Class.Name
+                                            </span>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <a asp-action="Notices" class="block text-center mt-4 text-yellow-600 hover:text-yellow-800 font-medium transition duration-200">
+                            View All Notices <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                }
+
+                <!-- Quick Actions -->
+                <div class="bg-white rounded-xl shadow-lg p-6 fade-in">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-bolt text-purple-500 mr-3"></i>Quick Actions
+                    </h2>
+                    <div class="space-y-3">
+                        <a asp-action="Progress"
+                           class="flex items-center p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition duration-200 group">
+                            <i class="fas fa-chart-line text-purple-600 text-xl mr-4 group-hover:scale-110 transition-transform duration-200"></i>
+                            <div>
+                                <p class="font-semibold text-gray-900">View Progress</p>
+                                <p class="text-sm text-gray-600">Detailed progress report</p>
+                            </div>
+                        </a>
+                        <a asp-action="Quizzes"
+                           class="flex items-center p-3 bg-green-50 rounded-lg hover:bg-green-100 transition duration-200 group">
+                            <i class="fas fa-clipboard-check text-green-600 text-xl mr-4 group-hover:scale-110 transition-transform duration-200"></i>
+                            <div>
+                                <p class="font-semibold text-gray-900">Quiz History</p>
+                                <p class="text-sm text-gray-600">Review past attempts</p>
+                            </div>
+                        </a>
+                        <a asp-action="Notices"
+                           class="flex items-center p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition duration-200 group">
+                            <i class="fas fa-bullhorn text-blue-600 text-xl mr-4 group-hover:scale-110 transition-transform duration-200"></i>
+                            <div>
+                                <p class="font-semibold text-gray-900">All Notices</p>
+                                <p class="text-sm text-gray-600">Important announcements</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Study Tips -->
+                <div class="bg-gradient-to-br from-indigo-50 to-purple-100 rounded-xl shadow-lg p-6 fade-in border border-indigo-200">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-3"></i>Study Tips
+                    </h2>
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span>Review materials regularly for better retention</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span>Take short breaks between study sessions</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span>Practice quizzes to test your knowledge</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                            <span>Ask questions when you need help</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add progress bar animations on scroll
+        const progressBars = document.querySelectorAll('[style*="width:"]');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 200);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        progressBars.forEach(bar => observer.observe(bar));
+
+        // Add fade-in animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            fadeObserver.observe(el);
+        });
+    </script>
+}

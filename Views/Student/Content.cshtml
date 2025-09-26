@@ -1,0 +1,402 @@
+﻿@model IEnumerable<Content>
+@{
+    ViewData["Title"] = "Chapter Content";
+    var chapterTitle = ViewBag.ChapterTitle ?? "Chapter";
+    var subjectName = ViewBag.SubjectName ?? "Subject";
+    var isCompleted = ViewBag.IsCompleted ?? false;
+    var quizzes = ViewBag.Quizzes as IEnumerable<Quiz> ?? new List<Quiz>();
+}
+
+<div class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex items-center justify-between">
+                <div class="fade-in">
+                    <nav class="flex items-center space-x-2 text-purple-200 text-sm mb-2">
+                        <a asp-action="Index" class="hover:text-white transition duration-200">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a asp-action="Subjects" class="hover:text-white transition duration-200">@subjectName</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a asp-action="Chapters" class="hover:text-white transition duration-200">Chapters</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span class="text-white">@chapterTitle</span>
+                    </nav>
+                    <h1 class="text-4xl font-bold mb-2">@chapterTitle</h1>
+                    <p class="text-purple-100 text-lg">@subjectName • Learning Materials & Resources</p>
+                </div>
+                <div class="text-8xl opacity-20">
+                    <i class="fas fa-book-open"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Main Content -->
+            <div class="lg:col-span-3">
+                @if (Model.Any())
+                {
+                    <div class="space-y-6">
+                        @foreach (var content in Model)
+                        {
+                            <div class="bg-white rounded-xl shadow-lg overflow-hidden fade-in hover-lift">
+                                <!-- Content Header -->
+                                <div class="bg-gradient-to-r from-purple-50 to-pink-50 px-6 py-4 border-b border-gray-200">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            @switch (content.Type)
+                                            {
+                                                case ContentType.Text:
+                                                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                                        <i class="fas fa-file-alt text-blue-600"></i>
+                                                    </div>
+                                                    break;
+                                                case ContentType.PDF:
+                                                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                                                        <i class="fas fa-file-pdf text-red-600"></i>
+                                                    </div>
+                                                    break;
+                                                case ContentType.Video:
+                                                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                                        <i class="fas fa-play-circle text-green-600"></i>
+                                                    </div>
+                                                    break;
+                                                case ContentType.Link:
+                                                    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                                        <i class="fas fa-external-link-alt text-purple-600"></i>
+                                                    </div>
+                                                    break;
+                                            }
+                                            <div>
+                                                <h3 class="text-lg font-semibold text-gray-900">@content.Title</h3>
+                                                <p class="text-sm text-gray-500">@content.Type.ToString() • Added @content.CreatedAt.ToString("MMM dd, yyyy")</p>
+                                            </div>
+                                        </div>
+                                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
+                                            @content.Type.ToString()
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Content Body -->
+                                <div class="p-6">
+                                    @if (!string.IsNullOrEmpty(content.Description))
+                                    {
+                                        <p class="text-gray-600 mb-4">@content.Description</p>
+                                    }
+
+                                    @switch (content.Type)
+                                    {
+                                        case ContentType.Text:
+                                            <div class="prose max-w-none">
+                                                @Html.Raw(content.TextContent?.Replace("\n", "<br>"))
+                                            </div>
+                                            break;
+
+                                        case ContentType.PDF:
+                                            <div class="bg-gray-50 rounded-lg p-6 text-center">
+                                                <i class="fas fa-file-pdf text-5xl text-red-500 mb-4"></i>
+                                                <h4 class="text-lg font-medium text-gray-900 mb-2">PDF Document</h4>
+                                                <p class="text-gray-600 mb-4">Click to download or view this PDF document</p>
+                                                <a href="@content.FileUrl" target="_blank"
+                                                   class="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-200">
+                                                    <i class="fas fa-download mr-2"></i>Download PDF
+                                                </a>
+                                            </div>
+                                            break;
+
+                                        case ContentType.Video:
+                                            <div class="bg-gray-50 rounded-lg p-6">
+                                                @if (!string.IsNullOrEmpty(content.VideoUrl))
+                                                {
+                                                    @if (content.VideoUrl.Contains("youtube.com") || content.VideoUrl.Contains("youtu.be"))
+                                                    {
+                                                        var videoId = "";
+                                                        if (content.VideoUrl.Contains("youtube.com/watch?v="))
+                                                        {
+                                                            videoId = content.VideoUrl.Split("v=")[1].Split("&")[0];
+                                                        }
+                                                        else if (content.VideoUrl.Contains("youtu.be/"))
+                                                        {
+                                                            videoId = content.VideoUrl.Split("youtu.be/")[1].Split("?")[0];
+                                                        }
+
+                                                        if (!string.IsNullOrEmpty(videoId))
+                                                        {
+                                                            <div class="relative pb-9/16 aspect-video">
+                                                                <iframe src="https://www.youtube.com/embed/@videoId"
+                                                                        class="absolute top-0 left-0 w-full h-full rounded-lg"
+                                                                        frameborder="0"
+                                                                        allowfullscreen>
+                                                                </iframe>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="text-center">
+                                                                <i class="fas fa-video text-5xl text-green-500 mb-4"></i>
+                                                                <a href="@content.VideoUrl" target="_blank"
+                                                                   class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-200">
+                                                                    <i class="fas fa-play mr-2"></i>Watch Video
+                                                                </a>
+                                                            </div>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="text-center">
+                                                            <i class="fas fa-video text-5xl text-green-500 mb-4"></i>
+                                                            <h4 class="text-lg font-medium text-gray-900 mb-2">Video Content</h4>
+                                                            <a href="@content.VideoUrl" target="_blank"
+                                                               class="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-200">
+                                                                <i class="fas fa-play mr-2"></i>Watch Video
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                }
+                                            </div>
+                                            break;
+
+                                        case ContentType.Link:
+                                            <div class="bg-gray-50 rounded-lg p-6 text-center">
+                                                <i class="fas fa-external-link-alt text-5xl text-purple-500 mb-4"></i>
+                                                <h4 class="text-lg font-medium text-gray-900 mb-2">External Resource</h4>
+                                                <p class="text-gray-600 mb-4">Click to visit this external resource</p>
+                                                <a href="@content.FileUrl" target="_blank"
+                                                   class="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition duration-200">
+                                                    <i class="fas fa-external-link-alt mr-2"></i>Visit Link
+                                                </a>
+                                            </div>
+                                            break;
+                                    }
+
+                                    <!-- Content Footer -->
+                                    <div class="mt-6 pt-4 border-t border-gray-200 flex items-center justify-between text-sm text-gray-500">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-user mr-2"></i>
+                                            <span>Created by @content.CreatedBy.FullName</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <i class="fas fa-calendar mr-2"></i>
+                                            <span>@content.CreatedAt.ToString("MMM dd, yyyy")</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <!-- No Content Message -->
+                    <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+                        <i class="fas fa-folder-open text-6xl text-gray-300 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-500 mb-2">No Content Available</h3>
+                        <p class="text-gray-400">This chapter doesn't have any learning materials yet.</p>
+                    </div>
+                }
+
+                <!-- Quizzes Section -->
+                @if (quizzes.Any())
+                {
+                    <div class="bg-white rounded-xl shadow-lg p-6 mt-8 fade-in">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                            <i class="fas fa-quiz text-purple-500 mr-3"></i>
+                            Chapter Quizzes
+                        </h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            @foreach (var quiz in quizzes)
+                            {
+                                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 border border-purple-200 hover:shadow-lg transition-all duration-300 hover-lift">
+                                    <div class="flex items-start justify-between mb-4">
+                                        <div>
+                                            <h4 class="text-lg font-semibold text-gray-900 mb-2">@quiz.Title</h4>
+                                            @if (!string.IsNullOrEmpty(quiz.Description))
+                                            {
+                                                <p class="text-gray-600 text-sm mb-3">@quiz.Description</p>
+                                            }
+                                        </div>
+                                        <i class="fas fa-clipboard-check text-2xl text-purple-500"></i>
+                                    </div>
+
+                                    <div class="flex items-center justify-between text-sm text-gray-600 mb-4">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-question-circle mr-2"></i>
+                                            <span>@quiz.Questions.Count questions</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <i class="fas fa-clock mr-2"></i>
+                                            <span>@quiz.TimeLimit min</span>
+                                        </div>
+                                    </div>
+
+                                    <a asp-controller="Quiz" asp-action="Take" asp-route-id="@quiz.Id"
+                                       class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-4 rounded-lg hover:from-purple-700 hover:to-pink-700 transition duration-200 text-center block font-medium">
+                                        <i class="fas fa-play-circle mr-2"></i>Take Quiz
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Sidebar -->
+            <div class="lg:col-span-1">
+                <!-- Chapter Progress -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-6 fade-in">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-chart-line text-blue-500 mr-2"></i>
+                        Chapter Progress
+                    </h3>
+                    <div class="text-center mb-4">
+                        <div class="w-20 h-20 rounded-full border-4 @(isCompleted ? "border-green-500" : "border-gray-200") flex items-center justify-center mx-auto mb-3">
+                            @if (isCompleted)
+                            {
+                                <i class="fas fa-check text-2xl text-green-500"></i>
+                            }
+                            else
+                            {
+                                <span class="text-2xl font-bold text-gray-400">0%</span>
+                            }
+                        </div>
+                        <p class="text-sm text-gray-600">
+                            @if (isCompleted)
+                            {
+                                <span class="text-green-600 font-medium">Chapter Completed!</span>
+                            }
+                            else
+                            {
+                                <span>Complete to unlock next chapter</span>
+                            }
+                        </p>
+                    </div>
+
+                    @if (!isCompleted)
+                    {
+                        <button onclick="markChapterComplete()"
+                                class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200 font-medium">
+                            <i class="fas fa-check mr-2"></i>Mark as Complete
+                        </button>
+                    }
+                    else
+                    {
+                        <div class="bg-green-100 text-green-800 py-2 px-4 rounded-lg text-center font-medium">
+                            <i class="fas fa-trophy mr-2"></i>Well Done!
+                        </div>
+                    }
+                </div>
+
+                <!-- Quick Navigation -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-6 fade-in">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-compass text-orange-500 mr-2"></i>
+                        Quick Navigation
+                    </h3>
+                    <div class="space-y-2">
+                        <a asp-action="Chapters"
+                           class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-200 text-sm">
+                            <i class="fas fa-list mr-3 text-gray-500"></i>
+                            <span>All Chapters</span>
+                        </a>
+                        <a asp-action="Progress"
+                           class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-200 text-sm">
+                            <i class="fas fa-chart-bar mr-3 text-gray-500"></i>
+                            <span>My Progress</span>
+                        </a>
+                        <a asp-action="Quizzes"
+                           class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-200 text-sm">
+                            <i class="fas fa-clipboard-check mr-3 text-gray-500"></i>
+                            <span>Quiz History</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Study Tips -->
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-100 rounded-xl shadow-lg p-6 border border-yellow-200 fade-in">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                        Study Tips
+                    </h3>
+                    <div class="space-y-3 text-sm text-gray-700">
+                        <div class="flex items-start">
+                            <i class="fas fa-circle text-yellow-500 text-xs mt-2 mr-2 flex-shrink-0"></i>
+                            <span>Take notes while reading for better retention</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-circle text-yellow-500 text-xs mt-2 mr-2 flex-shrink-0"></i>
+                            <span>Complete all materials before taking quizzes</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-circle text-yellow-500 text-xs mt-2 mr-2 flex-shrink-0"></i>
+                            <span>Review content multiple times for mastery</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-circle text-yellow-500 text-xs mt-2 mr-2 flex-shrink-0"></i>
+                            <span>Ask questions if something isn't clear</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add fade-in animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        fadeElements.forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, index * 200);
+        });
+
+        // Mark chapter as complete
+        function markChapterComplete() {
+            const chapterId = @ViewBag.ChapterId;
+
+            fetch('/Student/CompleteChapter', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value
+                },
+                body: JSON.stringify({ chapterId: chapterId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while marking the chapter as complete.');
+            });
+        }
+
+        // Add smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+}

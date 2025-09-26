@@ -1,0 +1,182 @@
+﻿@model IEnumerable<Chapter>
+@{
+    ViewData["Title"] = "Chapters";
+    var subjectName = ViewBag.SubjectName ?? "Subject";
+    var className = ViewBag.ClassName ?? "Class";
+}
+
+<div class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex items-center justify-between">
+                <div class="fade-in">
+                    <nav class="flex items-center space-x-2 text-indigo-200 text-sm mb-2">
+                        <a asp-action="Index" class="hover:text-white transition duration-200">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a asp-action="Subjects" asp-route-classId="@ViewBag.ClassId" class="hover:text-white transition duration-200">@className</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span class="text-white">@subjectName</span>
+                    </nav>
+                    <h1 class="text-4xl font-bold mb-2">@subjectName Chapters</h1>
+                    <p class="text-indigo-100 text-lg">Master each chapter to build your knowledge step by step</p>
+                </div>
+                <div class="text-8xl opacity-20">
+                    <i class="fas fa-list-ol"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        @if (Model.Any())
+        {
+            <!-- Progress Overview -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8 fade-in">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900 mb-2">Your Progress</h2>
+                        <p class="text-gray-600">Track your learning journey through each chapter</p>
+                    </div>
+                    @{
+                        var completedCount = ViewBag.ChapterStatuses != null ? 
+                            ((Dictionary<int, bool>)ViewBag.ChapterStatuses).Values.Count(v => v) : 0;
+                        var totalCount = Model.Count();
+                        var overallProgress = totalCount > 0 ? (double)completedCount / totalCount * 100 : 0;
+                    }
+                    <div class="text-right">
+                        <div class="text-3xl font-bold text-indigo-600">@completedCount/@totalCount</div>
+                        <div class="text-sm text-gray-500">Chapters Completed</div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="w-full bg-gray-200 rounded-full h-3">
+                        <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-all duration-1000 ease-out" 
+                             style="width: @overallProgress.ToString("F0")%"></div>
+                    </div>
+                    <div class="flex justify-between text-sm text-gray-500 mt-2">
+                        <span>@overallProgress.ToString("F0")% Complete</span>
+                        <span>@(totalCount - completedCount) remaining</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapters List -->
+            <div class="space-y-4">
+                @* initialize index safely *@
+                @for (var chapterIndex = 1; chapterIndex <= Model.Count(); chapterIndex++)
+                {
+                    var chapter = Model.ElementAt(chapterIndex - 1);
+                    var isCompleted = ViewBag.ChapterStatuses != null ?
+                    ((Dictionary<int, bool>)ViewBag.ChapterStatuses).GetValueOrDefault(chapter.Id, false) : false;
+
+                    <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden fade-in hover-lift"
+                         style="animation-delay:@((chapterIndex - 1) * 0.1)s;">
+                        <a asp-action="Content" asp-route-chapterId="@chapter.Id" class="block">
+                            <div class="p-6">
+                                <div class="flex items-start">
+                                    <!-- Chapter Number -->
+                                    <div class="flex-shrink-0 mr-6">
+                                        <div class="w-12 h-12 rounded-full @(isCompleted ? "bg-green-100 text-green-600" : "bg-indigo-100 text-indigo-600") flex items-center justify-center font-bold text-lg">
+                                            @if (isCompleted)
+                                            {
+                                                <i class="fas fa-check"></i>
+                                            }
+                                            else
+                                            {
+                                                <span>@chapterIndex</span>
+                                            }
+                                        </div>
+                                    </div>
+                                    <!-- ... rest of your chapter card ... -->
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+
+            <!-- Study Tips -->
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl shadow-lg p-6 mt-8 border border-blue-200 fade-in">
+                <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                    <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                    Study Tips for @subjectName
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                        <span>Complete chapters in order for the best learning experience</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                        <span>Take notes while reading to improve retention</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                        <span>Complete quizzes to test your understanding</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                        <span>Review completed chapters before exams</span>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <!-- Empty State -->
+            <div class="text-center py-16">
+                <div class="max-w-md mx-auto">
+                    <i class="fas fa-book-reader text-8xl text-gray-300 mb-6"></i>
+                    <h3 class="text-2xl font-semibold text-gray-500 mb-4">No Chapters Available</h3>
+                    <p class="text-gray-400 mb-8">This subject doesn't have any chapters yet. Please check back later or contact your teacher.</p>
+                    
+                    <a asp-action="Subjects" asp-route-classId="@ViewBag.ClassId" 
+                       class="inline-flex items-center px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-200">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Subjects
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add fade-in animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        fadeElements.forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, index * 150);
+        });
+
+        // Animate progress bar
+        setTimeout(() => {
+            const progressBar = document.querySelector('[style*="width:"]');
+            if (progressBar) {
+                const width = progressBar.style.width;
+                progressBar.style.width = '0%';
+                setTimeout(() => {
+                    progressBar.style.width = width;
+                }, 500);
+            }
+        }, 1000);
+
+        // Add hover effects for better interactivity
+        const chapterCards = document.querySelectorAll('.hover-lift');
+        chapterCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+}

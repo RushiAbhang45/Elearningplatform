@@ -1,0 +1,147 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="min-h-screen bg-gradient-to-br from-green-50 to-blue-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+        <div class="text-center fade-in">
+            <i class="fas fa-user-plus text-6xl text-green-600 mb-4"></i>
+            <h2 class="text-3xl font-bold text-gray-900">Join Our Community!</h2>
+            <p class="mt-2 text-gray-600">Create your account and start your learning journey today</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-2xl p-8 hover-lift">
+            <form asp-action="Register" method="post" class="space-y-6">
+                <input type="hidden" asp-for="@ViewData["ReturnUrl"]" />
+
+                <div asp-validation-summary="All" class="text-red-600 text-sm bg-red-50 p-4 rounded-lg border border-red-200"></div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label asp-for="FirstName" class="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                            <i class="fas fa-user mr-2 text-green-500"></i>First Name
+                        </label>
+                        <input asp-for="FirstName"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 hover:border-green-400"
+                               placeholder="John">
+                        <span asp-validation-for="FirstName" class="text-red-600 text-sm mt-1 block"></span>
+                    </div>
+                    <div>
+                        <label asp-for="LastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                        <input asp-for="LastName"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 hover:border-green-400"
+                               placeholder="Doe">
+                        <span asp-validation-for="LastName" class="text-red-600 text-sm mt-1 block"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <label asp-for="Email" class="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                        <i class="fas fa-envelope mr-2 text-green-500"></i>Email Address
+                    </label>
+                    <input asp-for="Email" type="email"
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 hover:border-green-400"
+                           placeholder="john@example.com">
+                    <span asp-validation-for="Email" class="text-red-600 text-sm mt-1 block"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Role" class="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                        <i class="fas fa-user-tag mr-2 text-green-500"></i>I am a
+                    </label>
+                    <select asp-for="Role"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 hover:border-green-400">
+                        <option value="Student" class="py-2">🎓 Student - Access learning materials and take quizzes</option>
+                        <option value="Teacher" class="py-2">👨‍🏫 Teacher - Create content and manage classes</option>
+                        <option value="Parent" class="py-2">👨‍👩‍👧‍👦 Parent - Monitor child's progress</option>
+                    </select>
+                    <span asp-validation-for="Role" class="text-red-600 text-sm mt-1 block"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Password" class="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                        <i class="fas fa-lock mr-2 text-green-500"></i>Password
+                    </label>
+                    <div class="relative" x-data="{ showPassword: false }">
+                        <input asp-for="Password"
+                               :type="showPassword ? 'text' : 'password'"
+                               class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 hover:border-green-400"
+                               placeholder="Minimum 6 characters">
+                        <button type="button" @@click ="showPassword = !showPassword" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                            <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'" class="text-gray-400 hover:text-gray-600"></i>
+                        </button>
+                    </div>
+                    <div class="mt-1 text-xs text-gray-500">
+                        Password must be at least 6 characters long
+                    </div>
+                    <span asp-validation-for="Password" class="text-red-600 text-sm mt-1 block"></span>
+                </div>
+
+                <div>
+                    <label asp-for="ConfirmPassword" class="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                        <i class="fas fa-check-circle mr-2 text-green-500"></i>Confirm Password
+                    </label>
+                    <div class="relative" x-data="{ showConfirmPassword: false }">
+                        <input asp-for="ConfirmPassword"
+                               :type="showConfirmPassword ? 'text' : 'password'"
+                               class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200 hover:border-green-400"
+                               placeholder="Re-enter your password">
+                        <button type="button" @@click ="showConfirmPassword = !showConfirmPassword" class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                            <i :class="showConfirmPassword ? 'fas fa-eye-slash' : 'fas fa-eye'" class="text-gray-400 hover:text-gray-600"></i>
+                        </button>
+                    </div>
+                    <span asp-validation-for="ConfirmPassword" class="text-red-600 text-sm mt-1 block"></span>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                        <input type="checkbox" required
+                               class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                    </div>
+                    <div class="ml-3 text-sm">
+                        <label class="text-gray-700">
+                            I agree to the
+                            <a href="#" class="text-green-600 hover:text-green-800 font-medium">Terms of Service</a>
+                            and
+                            <a href="#" class="text-green-600 hover:text-green-800 font-medium">Privacy Policy</a>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit"
+                        class="w-full bg-gradient-to-r from-green-600 to-blue-600 text-white py-3 px-4 rounded-lg hover:from-green-700 hover:to-blue-700 focus:ring-4 focus:ring-green-200 font-medium transition duration-200 transform hover:scale-[1.02] shadow-lg">
+                    <i class="fas fa-user-plus mr-2"></i>Create Account
+                </button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <p class="text-gray-600">
+                    Already have an account?
+                    <a asp-action="Login" class="text-green-600 hover:text-green-800 font-medium transition duration-200">
+                        Sign in here <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </p>
+            </div>
+
+            <!-- Role Information -->
+            <div class="mt-8 bg-gray-50 rounded-lg p-4">
+                <h4 class="text-sm font-semibold text-gray-700 mb-3">What each role can do:</h4>
+                <div class="space-y-2 text-xs text-gray-600">
+                    <div class="flex items-start">
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium mr-2">Student</span>
+                        <span>Access courses, take quizzes, track progress, download materials</span>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium mr-2">Teacher</span>
+                        <span>Create content, post notices, manage courses, track student engagement</span>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs font-medium mr-2">Parent</span>
+                        <span>Monitor child's progress, view quiz scores, receive updates</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

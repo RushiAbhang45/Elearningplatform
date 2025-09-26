@@ -1,0 +1,238 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container mx-auto px-4 py-8">
+    <!-- Hero Section -->
+    <div class="text-center fade-in mb-16">
+        <h1 class="text-5xl font-bold text-gray-800 mb-6">
+            Welcome to <span class="text-primary">EduPlatform</span>
+        </h1>
+        <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            Transform your learning experience with our comprehensive e-learning platform.
+            Connect students, teachers, and parents in one seamless digital environment.
+        </p>
+
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="space-x-4">
+                <a asp-controller="Account" asp-action="Register"
+                   class="bg-primary text-white px-8 py-4 rounded-lg hover:bg-secondary transition duration-200 inline-flex items-center text-lg font-semibold shadow-lg hover-lift">
+                    <i class="fas fa-rocket mr-2"></i>Get Started Free
+                </a>
+                <a asp-controller="Account" asp-action="Login"
+                   class="border-2 border-primary text-primary px-8 py-4 rounded-lg hover:bg-primary hover:text-white transition duration-200 inline-flex items-center text-lg font-semibold hover-lift">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-md mx-auto">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Welcome back, @User.Identity.Name!</h2>
+                <p class="text-gray-600 mb-6">Ready to continue your learning journey?</p>
+
+                @if (User.IsInRole("Student"))
+                {
+                    <a asp-controller="Student" asp-action="Index"
+                       class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary transition duration-200 inline-flex items-center">
+                        <i class="fas fa-tachometer-alt mr-2"></i>Go to Dashboard
+                    </a>
+                }
+                else if (User.IsInRole("Teacher"))
+                {
+                    <a asp-controller="Teacher" asp-action="Index"
+                       class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary transition duration-200 inline-flex items-center">
+                        <i class="fas fa-chalkboard-teacher mr-2"></i>Teacher Dashboard
+                    </a>
+                }
+                else if (User.IsInRole("Parent"))
+                {
+                    <a asp-controller="Parent" asp-action="Index"
+                       class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary transition duration-200 inline-flex items-center">
+                        <i class="fas fa-home mr-2"></i>Parent Dashboard
+                    </a>
+                }
+                else if (User.IsInRole("Admin"))
+                {
+                    <a asp-controller="Admin" asp-action="Index"
+                       class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary transition duration-200 inline-flex items-center">
+                        <i class="fas fa-cogs mr-2"></i>Admin Panel
+                    </a>
+                }
+            </div>
+        }
+    </div>
+
+    <!-- Features Section -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div class="text-center p-8 bg-white rounded-xl shadow-lg hover-lift transition duration-300">
+            <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-book-open text-3xl text-primary"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-gray-800">Rich Content</h3>
+            <p class="text-gray-600">Access comprehensive learning materials, interactive lessons, and multimedia resources designed for effective learning.</p>
+        </div>
+
+        <div class="text-center p-8 bg-white rounded-xl shadow-lg hover-lift transition duration-300">
+            <div class="bg-green-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-users text-3xl text-green-600"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-gray-800">Collaborative Learning</h3>
+            <p class="text-gray-600">Connect with teachers and students in an interactive environment. Share knowledge and grow together.</p>
+        </div>
+
+        <div class="text-center p-8 bg-white rounded-xl shadow-lg hover-lift transition duration-300">
+            <div class="bg-yellow-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-chart-line text-3xl text-accent"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-gray-800">Track Progress</h3>
+            <p class="text-gray-600">Monitor your learning journey with detailed analytics, assessments, and personalized feedback.</p>
+        </div>
+    </div>
+
+    <!-- Statistics Section -->
+    <div class="bg-gradient-to-r from-primary to-secondary rounded-xl p-8 text-white mb-16">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold mb-4">Join Our Growing Community</h2>
+            <p class="text-xl opacity-90">Thousands of learners are already transforming their education</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+            <div>
+                <div class="text-4xl font-bold mb-2">5,000+</div>
+                <div class="opacity-90">Active Students</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold mb-2">500+</div>
+                <div class="opacity-90">Expert Teachers</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold mb-2">1,000+</div>
+                <div class="opacity-90">Courses</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold mb-2">98%</div>
+                <div class="opacity-90">Satisfaction Rate</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Role-based Features -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6">
+                <h3 class="text-2xl font-bold text-white flex items-center">
+                    <i class="fas fa-user-graduate mr-3"></i>For Students
+                </h3>
+            </div>
+            <div class="p-6">
+                <ul class="space-y-4">
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        <span>Interactive lessons and assignments</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        <span>Real-time progress tracking</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        <span>Discussion forums and peer collaboration</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        <span>Personalized learning paths</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="bg-gradient-to-r from-green-500 to-green-600 p-6">
+                <h3 class="text-2xl font-bold text-white flex items-center">
+                    <i class="fas fa-chalkboard-teacher mr-3"></i>For Teachers
+                </h3>
+            </div>
+            <div class="p-6">
+                <ul class="space-y-4">
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        <span>Content creation and management tools</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        <span>Student performance analytics</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        <span>Communication and notification system</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                        <span>Assignment and grading management</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div class="text-center bg-gray-100 rounded-xl p-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Ready to Start Your Learning Journey?</h2>
+            <p class="text-xl text-gray-600 mb-8">Join thousands of students and educators already using EduPlatform</p>
+            <a asp-controller="Account" asp-action="Register"
+               class="bg-primary text-white px-10 py-4 rounded-lg hover:bg-secondary transition duration-200 inline-flex items-center text-lg font-semibold shadow-lg hover-lift">
+                <i class="fas fa-arrow-right mr-2"></i>Start Learning Today
+            </a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Animate numbers counting up
+        function animateNumbers() {
+            const numbers = document.querySelectorAll('.text-4xl');
+            numbers.forEach(number => {
+                const target = parseInt(number.textContent.replace(/[^\d]/g, ''));
+                if (target > 0) {
+                    let current = 0;
+                    const increment = target / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+
+                        if (number.textContent.includes('%')) {
+                            number.textContent = Math.floor(current) + '%';
+                        } else if (number.textContent.includes('+')) {
+                            number.textContent = Math.floor(current).toLocaleString() + '+';
+                        } else {
+                            number.textContent = Math.floor(current).toLocaleString();
+                        }
+                    }, 50);
+                }
+            });
+        }
+
+        // Trigger animation when statistics section comes into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateNumbers();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.bg-gradient-to-r');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+    </script>
+}

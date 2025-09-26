@@ -1,0 +1,207 @@
+﻿@model IEnumerable<Subject>
+@{
+    ViewData["Title"] = "Subjects";
+    var className = ViewBag.ClassName ?? "Class";
+}
+
+<div class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex items-center justify-between">
+                <div class="fade-in">
+                    <nav class="flex items-center space-x-2 text-blue-200 text-sm mb-2">
+                        <a asp-action="Index" class="hover:text-white transition duration-200">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span class="text-white">@className</span>
+                    </nav>
+                    <h1 class="text-4xl font-bold mb-2">@className Subjects</h1>
+                    <p class="text-blue-100 text-lg">Choose a subject to continue your learning journey</p>
+                </div>
+                <div class="text-8xl opacity-20">
+                    <i class="fas fa-books"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        @if (Model.Any())
+        {
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach (var subject in Model)
+                {
+                    var progress = ViewBag.SubjectProgresses != null ?
+                    ((Dictionary<int, double>)ViewBag.SubjectProgresses).GetValueOrDefault(subject.Id, 0) : 0;
+
+                    <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden hover-lift fade-in border border-gray-200 hover:border-blue-300">
+                        <a asp-action="Chapters" asp-route-subjectId="@subject.Id" class="block">
+                            <!-- Subject Header -->
+                            <div class="bg-gradient-to-br from-blue-50 to-indigo-100 p-6 border-b border-blue-200">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="bg-white rounded-full p-3 shadow-md">
+                                        <i class="fas fa-book text-2xl text-blue-600"></i>
+                                    </div>
+                                    <i class="fas fa-arrow-right text-blue-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-200 text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition duration-200 mb-2">
+                                    @subject.Name
+                                </h3>
+                                @if (!string.IsNullOrEmpty(subject.Description))
+                                {
+                                    <p class="text-gray-600 text-sm">@subject.Description</p>
+                                }
+                            </div>
+
+                            <!-- Subject Content -->
+                            <div class="p-6">
+                                <!-- Progress Section -->
+                                <div class="mb-6">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-sm font-medium text-gray-700">Progress</span>
+                                        <span class="text-sm font-bold text-blue-600">@progress.ToString("F0")%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-3">
+                                        <div class="bg-gradient-to-r from-blue-500 to-green-500 h-3 rounded-full transition-all duration-1000 ease-out"
+                                             style="width: @progress.ToString("F0")%"></div>
+                                    </div>
+                                    <div class="mt-2 text-xs text-gray-500">
+                                        @if (progress == 100)
+                                        {
+                                            <i class="fas fa-check-circle text-green-500 mr-1"></i>
+                                            <span class="text-green-600 font-medium">Completed!</span>
+                                        }
+                                        else if (progress > 0)
+                                        {
+                                            <i class="fas fa-play-circle text-blue-500 mr-1"></i>
+                                            <span class="text-blue-600 font-medium">In Progress</span>
+                                        }
+                                        else
+                                        {
+                                            <i class="fas fa-circle text-gray-400 mr-1"></i>
+                                            <span class="text-gray-500">Not Started</span>
+                                        }
+                                    </div>
+                                </div>
+
+                                <!-- Stats -->
+                                <div class="flex items-center justify-between text-sm text-gray-600">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-list-ul mr-2 text-blue-500"></i>
+                                        <span>@subject.Chapters.Count @(subject.Chapters.Count == 1 ? "chapter" : "chapters")</span>
+                                    </div>
+
+                                    @{
+                                        var totalContent = subject.Chapters.Sum(c => c.Contents.Count);
+                                        var totalQuizzes = subject.Chapters.Sum(c => c.Quizzes.Count());
+                                    }
+
+                                    <div class="flex items-center space-x-4">
+                                        @if (totalContent > 0)
+                                        {
+                                            <div class="flex items-center">
+                                                <i class="fas fa-file-alt mr-1 text-green-500"></i>
+                                                <span>@totalContent</span>
+                                            </div>
+                                        }
+                                        @if (totalQuizzes > 0)
+                                        {
+                                            <div class="flex items-center">
+                                                <i class="fas fa-quiz mr-1 text-purple-500"></i>
+                                                <span>@totalQuizzes</span>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Footer -->
+                            <div class="px-6 pb-6">
+                                <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-3 rounded-lg group-hover:from-blue-700 group-hover:to-indigo-700 transition-all duration-200 text-center">
+                                    <span class="font-medium">
+                                        @if (progress == 0)
+                                        {
+                                            <span><i class="fas fa-play mr-2"></i> Start Learning</span>
+                                        }
+                                        else if (progress == 100)
+                                        {
+                                            <span><i class="fas fa-redo mr-2"></i> Review Content</span>
+                                        }
+                                        else
+                                        {
+                                            <span><i class="fas fa-arrow-right mr-2"></i> Continue Learning</span>
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <!-- Empty State -->
+            <div class="text-center py-16">
+                <div class="max-w-md mx-auto">
+                    <i class="fas fa-book-open text-8xl text-gray-300 mb-6"></i>
+                    <h3 class="text-2xl font-semibold text-gray-500 mb-4">No Subjects Available</h3>
+                    <p class="text-gray-400 mb-8">This class doesn't have any subjects yet. Please contact your administrator or check back later.</p>
+
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-info-circle text-blue-500 mt-1 mr-3 text-lg"></i>
+                            <div class="text-left">
+                                <h4 class="text-sm font-medium text-blue-800 mb-2">What to do next?</h4>
+                                <ul class="text-sm text-blue-600 space-y-1">
+                                    <li>• Contact your teacher or administrator</li>
+                                    <li>• Check if you're enrolled in the correct class</li>
+                                    <li>• Wait for subjects to be added by your teacher</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a asp-action="Index" class="mt-6 inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add fade-in animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        fadeElements.forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            el.style.animationDelay = `${index * 0.1}s`;
+
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+
+        // Animate progress bars on scroll
+        const progressBars = document.querySelectorAll('[style*="width:"]');
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 300);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        progressBars.forEach(bar => progressObserver.observe(bar));
+    </script>
+}
